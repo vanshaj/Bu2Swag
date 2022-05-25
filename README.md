@@ -1,4 +1,4 @@
-Use the binary main.exe with the BurpSuite's Logger++ CSV File
+Build the project and use the binary main.exe with the BurpSuite's Logger++ CSV File
 
 1. Go to Burp Suite's Logger++ 
 2. Select the requests and click Export Entities as CSV
