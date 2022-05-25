@@ -28,22 +28,27 @@ func Run(options *Options) error {
 	}
 	
 
-	defaultFile ,err := os.Open("D:\\GoProj\\Bu2Swag\\default.yaml")
-      if err != nil{
+        currentDir, err := os.Getwd()
+	if err != nil{
               return err
-      }
-      defer defaultFile.Close()
+        }
 
-      filePath := "D:\\GoProj\\Bu2Swag\\swagger.yaml"
-      fYml, err := os.OpenFile(filePath,os.O_CREATE, 0600)
-      if err != nil {
+	defaultFile ,err := os.Open(fmt.Sprintf("%s/default.yaml",currentDir))
+        if err != nil{
               return err
-      }
+        }
+        defer defaultFile.Close()
+	
+        if err != nil{
+  	      return err
+        }
+        filePath := fmt.Sprintf("%s/swagger.yaml",currentDir)
+        fYml, err := os.OpenFile(filePath,os.O_CREATE, 0600)
         
-      _, err = io.Copy(fYml, defaultFile)
-      if err != nil{
+        _, err = io.Copy(fYml, defaultFile)
+        if err != nil{
               return err
-      }
+        }
 	fYml.Close()	
 	
 	reader := csv.NewReader(file)
